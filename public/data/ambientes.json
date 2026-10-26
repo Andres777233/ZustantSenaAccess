@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ambiente 101 · Desarrollo de Software",
+    "sede": "Ciudad Jardín",
+    "jornada": "Mañana",
+    "instructor": "Juan Pablo Ríos",
+    "capacidad": 30,
+    "programa": "ADSO",
+    "icon": "🖥️"
+  },
+  {
+    "id": 2,
+    "nombre": "Ambiente 202 · Redes y Servidores",
+    "sede": "Ciudad Jardín",
+    "jornada": "Tarde",
+    "instructor": "Alejandro Pérez",
+    "capacidad": 25,
+    "programa": "ADSO",
+    "icon": "🌐"
+  },
+  {
+    "id": 3,
+    "nombre": "Ambiente 305 · Bases de Datos",
+    "sede": "Centro de Comercio",
+    "jornada": "Mañana",
+    "instructor": "Gustavo Ramírez",
+    "capacidad": 28,
+    "programa": "ADSO",
+    "icon": "🗄️"
+  },
+  {
+    "id": 4,
+    "nombre": "Ambiente 108 · Multimedia",
+    "sede": "Centro de Comercio",
+    "jornada": "Tarde",
+    "instructor": "Katherin Gómez",
+    "capacidad": 22,
+    "programa": "Diseño",
+    "icon": "🎬"
+  },
+  {
+    "id": 5,
+    "nombre": "Ambiente 410 · Laboratorio de Hardware",
+    "sede": "Ciudad Jardín",
+    "jornada": "Noche",
+    "instructor": "Raúl Portería",
+    "capacidad": 20,
+    "programa": "ADSO",
+    "icon": "🔧"
+  },
+  {
+    "id": 6,
+    "nombre": "Ambiente 220 · Inglés Técnico",
+    "sede": "Centro de Comercio",
+    "jornada": "Mañana",
+    "instructor": "Camilo Torres",
+    "capacidad": 35,
+    "programa": "Transversal",
+    "icon": "📚"
+  },
+  {
+    "id": 7,
+    "nombre": "Ambiente 115 · Emprendimiento",
+    "sede": "Ciudad Jardín",
+    "jornada": "Tarde",
+    "instructor": "Laura Medina",
+    "capacidad": 32,
+    "programa": "Transversal",
+    "icon": "💡"
+  },
+  {
+    "id": 8,
+    "nombre": "Ambiente 301 · Inteligencia Artificial",
+    "sede": "Centro de Comercio",
+    "jornada": "Noche",
+    "instructor": "Sebastián Ruiz",
+    "capacidad": 24,
+    "programa": "ADSO",
+    "icon": "🤖"
+  }
+]

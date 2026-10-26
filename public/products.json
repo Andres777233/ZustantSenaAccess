@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Portatil Lenovo ThinkPad E14",
+    "category": "Tecnologia",
+    "price": 2890000,
+    "icon": "💻",
+    "stock": 8
+  },
+  {
+    "id": 2,
+    "name": "Mouse inalambrico Logitech M170",
+    "category": "Accesorios",
+    "price": 65000,
+    "icon": "🖱️",
+    "stock": 34
+  },
+  {
+    "id": 3,
+    "name": "Teclado mecanico Redragon Kumara",
+    "category": "Accesorios",
+    "price": 189000,
+    "icon": "⌨️",
+    "stock": 12
+  },
+  {
+    "id": 4,
+    "name": "Monitor 24 pulgadas Full HD",
+    "category": "Tecnologia",
+    "price": 749000,
+    "icon": "🖥️",
+    "stock": 6
+  },
+  {
+    "id": 5,
+    "name": "Diadema con microfono USB",
+    "category": "Accesorios",
+    "price": 98000,
+    "icon": "🎧",
+    "stock": 21
+  },
+  {
+    "id": 6,
+    "name": "Curso React + Vite (40 horas)",
+    "category": "Servicios",
+    "price": 0,
+    "icon": "⚛️",
+    "stock": 999
+  },
+  {
+    "id": 7,
+    "name": "Libro Clean Code en espanol",
+    "category": "Libros",
+    "price": 135000,
+    "icon": "📘",
+    "stock": 15
+  },
+  {
+    "id": 8,
+    "name": "Maletin para portatil 15 pulgadas",
+    "category": "Accesorios",
+    "price": 87000,
+    "icon": "🎒",
+    "stock": 18
+  },
+  {
+    "id": 9,
+    "name": "Memoria USB 64 GB",
+    "category": "Tecnologia",
+    "price": 42000,
+    "icon": "💾",
+    "stock": 40
+  },
+  {
+    "id": 10,
+    "name": "Soporte ergonomico para portatil",
+    "category": "Accesorios",
+    "price": 55000,
+    "icon": "🧱",
+    "stock": 27
+  },
+  {
+    "id": 11,
+    "name": "Curso Fundamentos de bases de datos",
+    "category": "Servicios",
+    "price": 0,
+    "icon": "🗄️",
+    "stock": 999
+  },
+  {
+    "id": 12,
+    "name": "Cuaderno de apuntes SENA",
+    "category": "Libros",
+    "price": 18000,
+    "icon": "📓",
+    "stock": 60
+  }
+]

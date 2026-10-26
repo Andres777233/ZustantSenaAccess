@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nombre": "Portátil Lenovo ThinkPad E14",
+    "serial": "SENA-PC-0012",
+    "categoria": "Portátil",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "💻"
+  },
+  {
+    "id": 2,
+    "nombre": "Portátil HP ProBook 450",
+    "serial": "SENA-PC-0034",
+    "categoria": "Portátil",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "💻"
+  },
+  {
+    "id": 3,
+    "nombre": "Mouse inalámbrico Logitech M170",
+    "serial": "SENA-MS-0101",
+    "categoria": "Periférico",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "🖱️"
+  },
+  {
+    "id": 4,
+    "nombre": "Teclado mecánico Redragon Kumara",
+    "serial": "SENA-KB-0045",
+    "categoria": "Periférico",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "⌨️"
+  },
+  {
+    "id": 5,
+    "nombre": "Monitor 24\" Full HD Samsung",
+    "serial": "SENA-MN-0022",
+    "categoria": "Monitor",
+    "estado": "En mantenimiento",
+    "propietario": "SENA",
+    "icon": "🖥️"
+  },
+  {
+    "id": 6,
+    "nombre": "Diadema con micrófono USB",
+    "serial": "SENA-AU-0078",
+    "categoria": "Audio",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "🎧"
+  },
+  {
+    "id": 7,
+    "nombre": "Proyector Epson PowerLite",
+    "serial": "SENA-PR-0009",
+    "categoria": "Audiovisual",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "📽️"
+  },
+  {
+    "id": 8,
+    "nombre": "Router Cisco RV340",
+    "serial": "SENA-RT-0003",
+    "categoria": "Redes",
+    "estado": "Prestado",
+    "propietario": "SENA",
+    "icon": "📶"
+  },
+  {
+    "id": 9,
+    "nombre": "Tablet Samsung Galaxy Tab A8",
+    "serial": "SENA-TB-0056",
+    "categoria": "Tablet",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "📱"
+  },
+  {
+    "id": 10,
+    "nombre": "Cámara web Logitech C920",
+    "serial": "SENA-CM-0018",
+    "categoria": "Audiovisual",
+    "estado": "Disponible",
+    "propietario": "SENA",
+    "icon": "📷"
+  }
+]

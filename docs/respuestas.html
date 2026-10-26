@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>SenaAccess · Respuestas de la guía Zustand</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: #14201a;
+  }
+  header.portada {
+    border-bottom: 3px solid #39a900;
+    padding-bottom: 12px;
+    margin-bottom: 22px;
+  }
+  header.portada small {
+    display: block;
+    color: #4b5c53;
+    font-size: 9pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  h1 { font-size: 20pt; margin: 6px 0 4px; color: #0f1a14; }
+  h2 {
+    font-size: 14pt;
+    margin: 22px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #d7e2da;
+    color: #1f6b00;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 12pt; margin: 16px 0 6px; }
+  h4 { font-size: 11pt; margin: 14px 0 4px; }
+  p { margin: 0 0 9px; text-align: justify; }
+  ul, ol { margin: 0 0 10px; padding-left: 20px; }
+  li { margin-bottom: 5px; text-align: justify; }
+  strong { color: #0f1a14; }
+  code {
+    background: #eef4ef;
+    border: 1px solid #d7e2da;
+    border-radius: 4px;
+    padding: 0 4px;
+    font-family: Consolas, monospace;
+    font-size: 9.5pt;
+  }
+  pre {
+    background: #0f1a14;
+    color: #e8f2ec;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 9.5pt;
+    overflow: auto;
+    page-break-inside: avoid;
+  }
+  pre code { background: transparent; border: none; color: inherit; padding: 0; }
+  footer.pie {
+    margin-top: 26px;
+    padding-top: 8px;
+    border-top: 1px solid #d7e2da;
+    color: #4b5c53;
+    font-size: 8.5pt;
+  }
+</style>
+</head>
+<body>
+<header class="portada">
+  <small>SENA · ADSO 228118 · RAP3 · Crear componentes Frontend</small>
+  <h1>Zustand en React con Vite</h1>
+  <small>Respuestas de la guía · Proyecto: SenaAccess (práctica + transferencia)</small>
+</header>
+<h1>Respuestas de la guía</h1>
+<h2>3.1 Actividad de reflexión inicial</h2>
+<p><strong>1. ¿Qué tiene en común la situación del edificio con la forma en que pasamos props entre componentes de React?</strong></p>
+<p>En los dos casos un mensaje atraviesa intermediarios que <strong>no lo necesitan</strong>. En el edificio, la administradora no puede hablar directamente con el quinto piso: el dato pasa por el vigilante, el segundo y el tercero. En React, <code>App</code> tiene el carrito y el contador vive en <code>Navbar</code>, pero el botón está en <code>ProductCard</code>, dentro de <code>ProductList</code>, dentro de <code>CatalogPage</code>: el dato viaja por todos esos componentes como props, aunque <code>ProductList</code> y <code>CatalogPage</code> nunca lo usen. Eso es <strong>prop drilling</strong>.</p>
+<p><strong>2. ¿Qué pasaría en el edificio si se agregan más pisos o si un intermediario olvida pasar el mensaje? ¿Qué equivale a eso en una aplicación React?</strong></p>
+<p>Cada piso nuevo agrega un eslabón y más demora; si alguien se distrae, el mensaje se pierde y el quinto piso nunca se entera. En React pasa lo mismo: agregar un nivel de componentes obliga a modificar todos los intermedios (aunque no usen el dato), y si un componente olvida pasar la prop o la renombra, el componente profundo recibe <code>undefined</code>, la UI queda desactualizada y el error aparece lejos de su causa. También empeora el rendimiento: cada cambio re-renderiza a toda la cadena.</p>
+<p><strong>3. ¿Qué solución propondría para el edificio? ¿Cómo se traduciría esa solución en una aplicación?</strong></p>
+<p>Poner un <strong>citófono o un tablero común</strong>: la administradora publica el aviso y el quinto piso lo lee directamente, sin intermediarios. En React ese "tablero" es un <strong>store global</strong>: con Zustand, <code>ProductCard</code> escribe en <code>useCartStore</code> y <code>Navbar</code> lee del mismo store con un selector. Ninguno pasa props y el árbol deja de importar.</p>
+<p><strong>4. En el proyecto de su grupo, ¿qué información necesitan conocer varias pantallas o componentes al mismo tiempo?</strong></p>
+<ol>
+<li><strong>Usuario autenticado y token</strong> (navbar, rutas protegidas, peticiones a la API).</li>
+<li><strong>Carrito / pedido en curso</strong> (contador en la barra, tarjetas del catálogo, panel de compra).</li>
+<li><strong>Notificaciones o mensajes sin leer</strong> (campana, panel de avisos, dashboard).</li>
+<li><strong>Tema y preferencias de interfaz</strong> (botón de la barra y toda la aplicación).</li>
+<li><strong>Filtros de búsqueda</strong> (barra de filtros y listado de resultados).</li>
+</ol>
+<hr />
+<h2>3.2 Actividad de contextualización – Parte A (diagnóstico)</h2>
+<p><strong>1. ¿Qué es el estado (state) de un componente en React y para qué sirve <code>useState</code>?</strong></p>
+<p>Es la información que un componente recuerda entre renderizados y que, al cambiar, provoca un nuevo render. <code>useState</code> es el hook que crea esa variable y su función de actualización: <code>const [valor, setValor] = useState(inicial)</code>. Se usa para lo que solo le interesa a ese componente (un input, un modal abierto, un contador).</p>
+<p><strong>2. ¿Cuál es la diferencia entre props y estado?</strong></p>
+<p>Las <strong>props</strong> las recibe el componente desde su padre y son de solo lectura: el hijo no las modifica. El <strong>estado</strong> es propio del componente, puede cambiar con su <code>set</code> y provoca re-render. Las props fluyen hacia abajo; el estado vive donde se declara.</p>
+<p><strong>3. ¿Qué sucede con un componente cuando su estado cambia?</strong></p>
+<p>React vuelve a ejecutar la función del componente (re-render) y compara el resultado con el render anterior para actualizar solo el DOM necesario. Si el estado se actualiza con una copia nueva, el cambio se detecta; si se muta el mismo objeto, React puede no re-renderizar.</p>
+<p><strong>4. ¿Ha usado <code>useContext</code> o la Context API? Si es así, describa brevemente para qué.</strong></p>
+<p>Sí, por ejemplo para el tema o el idioma: se envuelve la app en un <code>Provider</code> y los componentes consumen el valor con <code>useContext</code> sin recibirlo por props. Funciona bien con datos que cambian poco, pero <strong>todos los consumidores se re-renderizan</strong> cuando cambia el valor, y hace falta escribir <code>createContext</code>, el hook y el provider.</p>
+<p><strong>5. ¿Qué es <code>localStorage</code> y qué tipo de datos puede guardar?</strong></p>
+<p>Es un almacenamiento del navegador que guarda pares clave-valor <strong>en texto</strong> y los conserva al recargar o cerrar la pestaña. Solo guarda strings (objetos hay que serializarlos con <code>JSON.stringify</code>), tiene unos 5 MB por origen y es sincrónico. <strong>No</strong> se deben guardar contraseñas ni datos sensibles, porque cualquier script de la página puede leerlo.</p>
+<p><strong>6. Escriba el comando para crear un proyecto React con Vite.</strong></p>
+<pre><code>npm create vite@latest mi-app -- --template react</code></pre>
+<hr />
+<h2>3.3.13 Preguntas de comprobación</h2>
+<p><strong>1. ¿Qué diferencia hay entre <code>set({ count: 0 })</code> y <code>set((state) =&gt; ({ count: state.count + 1 }))</code>? ¿Cuándo se usa cada uno?</strong></p>
+<p><code>set({ count: 0 })</code> escribe un valor <strong>fijo</strong> y hace merge con el estado actual (las demás propiedades se conservan). La forma con función recibe el estado <strong>más reciente</strong> y se usa cuando el nuevo valor <strong>depende del anterior</strong> (<code>+1</code>, <code>-1</code>, alternar un booleano, agregar a un arreglo). Si se usara <code>set({ count: count + 1 })</code> con un <code>count</code> capturado del render, dos actualizaciones seguidas podrían perder una.</p>
+<p><strong>2. ¿Por qué no se debe escribir <code>state.items.push(producto)</code> dentro de una acción?</strong></p>
+<p>Porque <code>push</code> <strong>muta</strong> el arreglo existente: la referencia sigue siendo la misma, así que los selectores no detectan el cambio y los componentes no se vuelven a renderizar (o lo hacen de forma impredecible). Además <code>persist</code> y <code>devtools</code> comparan por referencia. Lo correcto es crear un arreglo nuevo: <code>set((s) =&gt; ({ items: [...s.items, producto] }))</code>.</p>
+<p><strong>3. Explique por qué <code>const store = useCartStore()</code> puede causar renderizados innecesarios.</strong></p>
+<p>Sin selector, el componente se suscribe al <strong>store completo</strong>: se vuelve a renderizar con cualquier cambio (agregar un item, cambiar una cantidad, vaciar el carrito), aunque solo muestre el contador. Con <code>useCartStore((s) =&gt; s.items.length)</code> se suscribe únicamente a ese valor y solo se re-renderiza cuando ese valor cambia.</p>
+<p><strong>4. ¿Para qué sirve <code>useShallow</code>?</strong></p>
+<p>Para cuando un selector devuelve <strong>un objeto o arreglo</strong> con varios valores. Sin él, el selector crea una referencia nueva en cada render, Zustand 5 la ve como un cambio permanente y puede provocar un ciclo infinito de renderizados. <code>useShallow</code> compara el resultado <strong>superficialmente</strong> (clave por clave) y solo notifica si algún valor cambió. En este proyecto se usa en <code>ProductFilters</code>, que pide <code>search</code>, <code>category</code>, <code>setSearch</code>, <code>setCategory</code> y <code>clearFilters</code>.</p>
+<p><strong>5. ¿Qué hace el middleware <code>persist</code> y dónde guarda la información por defecto?</strong></p>
+<p>Guarda el estado del store en el <strong><code>localStorage</code></strong> del navegador (clave <code>name</code>) y lo recupera al iniciar la aplicación, de modo que el estado sobrevive a una recarga. Con <code>partialize</code> se elige qué propiedades se guardan (aquí solo <code>items</code>, <code>ids</code>, <code>theme</code>, <code>user</code> y <code>token</code>). También admite otros almacenamientos (<code>sessionStorage</code>, <code>AsyncStorage</code> en React Native).</p>
+<p><strong>6. Mencione dos datos que deberían ser estado local y dos que deberían ser estado global.</strong></p>
+<ul>
+<li><strong>Local:</strong> el texto que se escribe en un input de búsqueda antes de aplicarlo; el estado abierto/cerrado de un modal o un menú desplegable.</li>
+<li><strong>Global:</strong> el usuario autenticado con su token; los items del carrito (o los favoritos, o el tema de la aplicación).</li>
+</ul>
+<footer class="pie">
+  Tienda SENA / SenaAccess · Zustand 5 + React 19 + Vite · Respuestas de las actividades 3.1, 3.2 (Parte A) y 3.3.13.
+</footer>
+</body>
+</html>
